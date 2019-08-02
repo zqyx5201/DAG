@@ -14,14 +14,13 @@ public class DagApplication {
         EndPoint f = new EndPoint("f");
 
 
-        /* 第一条线: a->b->d->f*/
         a.connect(b).connect(d).connect(f);
-        /* 第二条线: a->c->f*/
         a.connect(c).connect(f);
-        /* 第三条线: a->b->e->f*/
         a.connect(b).connect(e).connect(f);
-        /* 第四条线: a->b->c->d->f*/
         a.connect(b).connect(c).connect(d).connect(f);
+
+        b.connect(f);
+        c.connect(e).connect(f);
 
         //把所有线条都打印出来
         a.getLines().forEach(Line::print);
@@ -32,8 +31,11 @@ public class DagApplication {
          * a->b->e->f
          * a->b->c->f
          * a->b->c->d->f
+         * a->b->c->e->f
+         * a->b->f
          * a->c->f
          * a->c->d->f
+         * a->c->e->f
          */
     }
 }
